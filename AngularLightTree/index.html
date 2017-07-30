@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
 
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title></title>
     <script src="/download_lib/nuget_packages/scripts/angular.min.js"></script>
     <script src="/download_lib/nuget_packages/scripts/jquery-1.9.1.min.js"></script>
@@ -13,18 +14,20 @@
 
     <!--create js-->
     <script src="https://code.createjs.com/createjs-2015.05.21.min.js"></script>
-
+    <!--tree-->
+    <script src="/download_lib/manual/angular-ui-tree-master/dist/angular-ui-tree.min.js"></script>
+    <link href="/download_lib/manual/angular-ui-tree-master/dist/angular-ui-tree.min.css" rel="stylesheet" />
     <!-- custom -->
     <script src="/custom/js/controller.js"></script>
-    <script src="/custom/js/lightdiagram.js"></script>
+    <script src="/custom/js/lightTreeDirective.js"></script>
+    <link href="/custom/css/lightTreeContainer.css" rel="stylesheet" />
 </head>
 <body>
     <div ng-controller="MyController" ng-init="initialize()">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    ddd
-                    <light-diagram></light-diagram>
+                    <light-tree></light-tree>
                 </div>
             </div>
         </div>
