@@ -1,33 +1,15 @@
-﻿
-Skip to content
-This repository
+﻿.lightTreeContainer{
+    display:flex;
+    flex-direction:column;
+}
 
-    Pull requests
-    Issues
-    Marketplace
-    Gist
+.lightTreeContainer > .flex-item1{
 
-    @redpeaks33
+}
 
-146
-2,361
+.lightTreeContainer > .flex-item2{
 
-    711
-
-angular-ui-tree/angular-ui-tree
-Code
-Issues 88
-Pull requests 28
-Projects 0
-Wiki
-angular-ui-tree/examples/css/app.css
-c1e28e4 on Nov 20, 2015
-@leonardochaia leonardochaia Improved example css
-@leonardochaia
-@Voles
-@ppuleo
-@JimLiu
-67 lines (55 sloc) 1.09 KB
+}
 
 .btn {
     margin-right: 8px;
@@ -47,7 +29,7 @@ c1e28e4 on Nov 20, 2015
 }
 
 .angular-ui-tree-placeholder {
-    background: #f0f9ff;
+    background: red;
     border: 2px dashed #bed2db;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -95,8 +77,3 @@ tr.angular-ui-tree-empty {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-
-    Contact GitHub API Training Shop Blog About 
-
-    © 2017 GitHub, Inc. Terms Privacy Security Status Help 
-

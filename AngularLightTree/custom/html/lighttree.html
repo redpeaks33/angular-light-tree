@@ -1,18 +1,32 @@
 ﻿<div class="lightTreeContainer">
-    <div ui-tree>
-        <ol ui-tree-nodes="" ng-model="list">
-            <li ng-repeat="item in list" ui-tree-node>
-                <div ui-tree-handle>
-                    {{item.title}}
-                </div>
-                <ol ui-tree-nodes="" ng-model="item.items">
-                    <li ng-repeat="subItem in item.items" ui-tree-node>
-                        <div ui-tree-handle>
-                            {{subItem.title}}
-                        </div>
-                    </li>
-                </ol>
-            </li>
-        </ol>
+    <div class="flex-item1">
+        <button class="btn btn-primary" ng-click="expandAll(true)">Expand</button>
+        <button class="btn btn-primary" ng-click="expandAll(false)">Collapse</button>
     </div>
-</div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <div ui-tree data-drag-enabled="false" data-max-depth="2">
+                    <ol ui-tree-nodes ng-model="::NodesRoot">
+                        <li ui-tree-node ng-repeat="nodes in ::NodesRoot" >
+                            <div ui-tree-handle >
+                                {{::nodes.title}}
+                                <button class="btn btn-primary btn-xs" ng-click="changeExpandState(nodes)" ><span class="glyphicon" ng-class="{'glyphicon-chevron-right': true, 'glyphicon-chevron-down': false}"/></button>
+                            </div>
+                            <ol ui-tree-nodes="" ng-model="::nodes.items">
+                                <li ui-tree-node ng-repeat="node in ::nodes.items" ng-show="node.visible">
+                                    <div ui-tree-handle>
+                                        {{::node.title}}
+                                    </div>
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <pre class="code">{{ NodesRoot | json }}</pre>
+            </div>
+        </div>
+    </div>
+    </div>

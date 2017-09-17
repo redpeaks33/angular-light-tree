@@ -7,107 +7,59 @@
         },
         templateUrl: '/custom/html/lighttree.html',
         controller: ['$scope', '$rootScope', '$timeout', function ($scope, $rootScope, $timeout) {
-            $scope.remove = function (scope) {
-                scope.remove();
-            };
-
-            $scope.toggle = function (scope) {
-                scope.toggle();
-            };
-
-            $scope.moveLastToTheBeginning = function () {
-                var a = $scope.data.pop();
-                $scope.data.splice(0, 0, a);
-            };
-
-            $scope.newSubItem = function (scope) {
-                var nodeData = scope.$modelValue;
-                nodeData.nodes.push({
-                    id: nodeData.id * 10 + nodeData.nodes.length,
-                    title: nodeData.title + '.' + (nodeData.nodes.length + 1),
-                    nodes: []
+            $scope.expandAll = function (isCollapse) {
+                _.each($scope.NodesRoot, function (n) {
+                    _.each(n.items, function (m) {
+                        m.visible = isCollapse;
+                    });
                 });
             };
 
-            $scope.collapseAll = function () {
-                $scope.$broadcast('angular-ui-tree:collapse-all');
+            $scope.changeExpandState = function (nodes) {
+                _.each(nodes.items, function (n) {
+                    n.visible = !n.visible;
+                });
             };
 
-            $scope.expandAll = function () {
-                $scope.$broadcast('angular-ui-tree:expand-all');
-            };
+            initialize();
+        
+            function initialize(){
+                $scope.NodesRoot = createNodesList();
+            }
+            //#region Fixed List
+            function createNodesList() {
+                let root = [];
+                for (var i = 0; i < 50; i++) {
 
-            $scope.list = [{
-                'id': 1,
-                'title': 'node1',
-                'items': [
-                  {
-                      'id': 11,
-                      'title': 'node1.1',
-                      'items': [
-                        {
-                            'id': 111,
-                            'title': 'node1.1.1',
-                            'items': []
+                    let nodes = {id:i,title:'nodesContainerTitle'+i,items:[]};
+
+                    for (var j = 0; j < 50; j++) {
+                        let node = {
+                            id: j,
+                            title: 'node title' + j,
+                            visible:false
                         }
-                      ]
-                  }
-                ]
-            }, {
-                'id': 2,
-                'title': 'node2',
-                'items': []
-            }];
-
-
-            $scope.data = [{
-                'id': 1,
-                'title': 'node1',
-                'nodes': [
-                  {
-                      'id': 11,
-                      'title': 'node1.1',
-                      'nodes': [
-                        {
-                            'id': 111,
-                            'title': 'node1.1.1',
-                            'nodes': []
-                        }
-                      ]
-                  },
-                  {
-                      'id': 12,
-                      'title': 'node1.2',
-                      'nodes': []
-                  }
-                ]
-            }, {
-                'id': 2,
-                'title': 'node2',
-                'nodrop': true, // An arbitrary property to check in custom template for nodrop-enabled
-                'nodes': [
-                  {
-                      'id': 21,
-                      'title': 'node2.1',
-                      'nodes': []
-                  },
-                  {
-                      'id': 22,
-                      'title': 'node2.2',
-                      'nodes': []
-                  }
-                ]
-            }, {
-                'id': 3,
-                'title': 'node3',
-                'nodes': [
-                  {
-                      'id': 31,
-                      'title': 'node3.1',
-                      'nodes': []
-                  }
-                ]
-            }];
+                        nodes.items.push(node);
+                    }
+                    
+                    root.push(nodes);
+                }
+                //var line = [{ id: 1, name: 11 }, { id: 2, name: 12 }, { id: 3, name: 13 }, { id: 4, name: 14 }, { id: 5, name: 15 }]
+                //var model = [{ id: 1, name: 'A' }, { id: 2, name: 'B' }, { id: 3, name: 'C' }, { id: 4, name: 'D' }, { id: 5, name: 'E' }]
+                //for (var j = 0; j < 1000; j++) {
+                //    var item = {
+                //        id: j,
+                //        firstName: line[Math.floor((Math.random() * 5))],
+                //        lastName: model[Math.floor((Math.random() * 5))],
+                //        nationality: { id: j, name: 'EQ' + j },
+                //        education: { id: j, name: 'EQ' + j },
+                //        visible: true,
+                //    };
+                //    $scope.collection.push(item);
+                //};
+                return root;
+            }
+            //#endregion Fixed List
         }],
     };
 });
